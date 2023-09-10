@@ -2,7 +2,6 @@ package com.lira.talento.application.infra;
 
 import org.springframework.stereotype.Repository;
 
-import com.lira.talento.application.api.request.AdolescenteRequest;
 import com.lira.talento.application.repository.AdolescenteRepository;
 import com.lira.talento.domain.Adolescente;
 
@@ -13,13 +12,15 @@ import lombok.extern.log4j.Log4j2;
 @Log4j2
 @RequiredArgsConstructor
 public class AdolescenteInfraRepository implements AdolescenteRepository {
+	
+	private final AdolescenteSpringDataJPARepository adolescenteSpringDataJPARepository;
 
-	@Override
-	public Adolescente criaAdolescente(AdolescenteRequest adolescenteRequest) {
-		log.info("[inicia] AdolescenteInfraRepository - criaAdolescente");
-		
-		log.info("[finaliza] AdolescenteInfraRepository - criaAdolescente");
-		return null;
+@Override
+	
+	public Adolescente salva(Adolescente adolescente) {
+	log.info("[inicia] AdolescenteInfraRepository - salva");
+	adolescenteSpringDataJPARepository.save(adolescente);
+	log.info("[finaliza] AdolescenteInfraRepository - salva");
+	return adolescente;
 	}
-
 }

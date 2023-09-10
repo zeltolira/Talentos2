@@ -20,7 +20,7 @@ public class AdolescenteApplicationService implements AdolescenteService {
 	@Override
 	public AdolescenteResponse criaAdolescente(AdolescenteRequest adolescenteRequest) {
 		log.info("[inicia] AdolescenteApplicationService - criaAdolescente"); 
-		Adolescente adolescente = adolescenteRepository.criaAdolescente(adolescenteRequest);
+		Adolescente adolescente = adolescenteRepository.salva(new Adolescente(adolescenteRequest));
 		log.info("[finaliza] AdolescenteApplicationService - criaAdolescente"); 
 		return AdolescenteResponse.builder()
 				.idAdolescente(adolescente.getIdAdolescente())

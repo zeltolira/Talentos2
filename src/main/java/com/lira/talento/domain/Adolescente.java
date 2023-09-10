@@ -4,6 +4,8 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.UUID;
 
+import com.lira.talento.application.api.request.AdolescenteRequest;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -47,4 +49,14 @@ public class Adolescente {
 	private LocalDateTime dataHoraultimaAlteracao;
 	
 
+	public Adolescente(AdolescenteRequest adolescenteRequest) {
+		this.nomeAdolescente = adolescenteRequest.getNomeAdolescente();
+		this.documento = adolescenteRequest.getDocumento();
+		this.dataNascimento = adolescenteRequest.getDataNascimento();
+		this.celular = adolescenteRequest.getCelular();
+		this.sexo = adolescenteRequest.getSexo();
+		this.dataHoraDoCadastro = LocalDateTime.now();
+	}
+	
+	
 }
