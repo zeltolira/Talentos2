@@ -4,6 +4,8 @@ import org.springframework.stereotype.Service;
 
 import com.lira.talento.application.api.request.AdolescenteRequest;
 import com.lira.talento.application.api.response.AdolescenteResponse;
+import com.lira.talento.application.repository.AdolescenteRepository;
+import com.lira.talento.domain.Adolescente;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -13,11 +15,16 @@ import lombok.extern.log4j.Log4j2;
 @RequiredArgsConstructor
 public class AdolescenteApplicationService implements AdolescenteService {
 
+	private final AdolescenteRepository adolescenteRepository;
+
 	@Override
 	public AdolescenteResponse criaAdolescente(AdolescenteRequest adolescenteRequest) {
 		log.info("[inicia] AdolescenteApplicationService - criaAdolescente"); 
+		Adolescente adolescente = adolescenteRepository.criaAdolescente(adolescenteRequest);
 		log.info("[finaliza] AdolescenteApplicationService - criaAdolescente"); 
-		return null;
+		return AdolescenteResponse.builder()
+				.idAdolescente(adolescente.getIdAdolescente())
+				.build();
 	}
 
 }
